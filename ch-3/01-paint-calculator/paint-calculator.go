@@ -4,21 +4,33 @@ import "fmt"
 
 var metersPerLiter float64
 
-func paintNeeded(width float64, height float64) float64 {
+func paintNeeded(width float64, height float64) (float64, error) {
+	if width < 0 {
+		return 0, fmt.Errorf("a width of %0.2f is invalid", width)
+	}
+	if height < 0 {
+		return 0, fmt.Errorf("a height of %0.2f is invalid", height)
+	}
 	area := width * height
-	return area / metersPerLiter
+	return area / metersPerLiter, nil
 }
 
 func main() {
 	metersPerLiter = 10.0
 
-	var amount, total float64
+	var total float64
 
-	amount = paintNeeded(4.2, 3.0)
+	amount, err := paintNeeded(4.2, 3.0)
+	if err != nil {
+		fmt.Println(err)
+	}
 	fmt.Printf("%.2f liters needed\n", amount)
 	total += amount
 
-	amount = paintNeeded(5.2, 3.5)
+	amount, err = paintNeeded(5.2, 3.5)
+	if err != nil {
+		fmt.Println(err)
+	}
 	fmt.Printf("%.2f liters needed\n", amount)
 	total += amount
 
