@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 var metersPerLiter float64
 
@@ -22,17 +25,17 @@ func main() {
 
 	amount, err := paintNeeded(4.2, 3.0)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 	fmt.Printf("%.2f liters needed\n", amount)
 	total += amount
 
 	amount, err = paintNeeded(5.2, 3.5)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 	fmt.Printf("%.2f liters needed\n", amount)
 	total += amount
 
-	fmt.Printf("Total: %0.2f liters\n", total)
+	fmt.Printf("Total needed: %0.2f liters\n", total)
 }
