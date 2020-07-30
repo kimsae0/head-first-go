@@ -12,3 +12,9 @@ func Hello() {
 func Hi() {
 	fmt.Println("Hi!")
 }
+
+// AllGreetings prints both words
+func AllGreetings() {
+	Hello()
+	Hi()
+}
